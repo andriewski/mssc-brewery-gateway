@@ -3,26 +3,27 @@ package com.sfg.gateway.config;
 import org.springframework.cloud.gateway.route.RouteLocator;
 import org.springframework.cloud.gateway.route.builder.RouteLocatorBuilder;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 
-/**
- * Created by jt on 3/5/20.
- */
-//@Profile("google")
-//@Configuration
+@Profile("google")
+@Configuration
 public class GoogleConfig {
 
     /**
      * This is just an example of routing requests to Google from localhost. For demonstration only
-     * @param builder
-     * @return
+     *
+     * @param builder configurer of route config
+     * @return configured route locator
      */
     @Bean
-    public RouteLocator googleRouteConfig(RouteLocatorBuilder builder){
+    public RouteLocator googleRouteConfig(RouteLocatorBuilder builder) {
         return builder.routes()
-                .route(r -> r.path("/googlesearch2")
-                        .filters(f -> f.rewritePath("/googlesearch2(?<segment>/?.*)", "/${segment}"))
-                .uri("https://google.com")
-                .id("google"))
+                .route(route -> route.path("/googlesearch3")
+                        .filters(filter -> filter.rewritePath("/googlesearch3(?<segment>/?.*)", "/${segment}"))
+                        .uri("https://google.com")
+                        .id("google")
+                )
                 .build();
     }
 }

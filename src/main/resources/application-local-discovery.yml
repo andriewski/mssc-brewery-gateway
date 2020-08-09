@@ -1,3 +1,6 @@
 eureka:
-  client:
-      register-with-eureka: false
+    client:
+        register-with-eureka: false
+        serviceUrl:
+            #            default value + 'netflix' is an username and 'eureka' is a password via base authentication
+            defaultZone: http://netflix:eureka@localhost:8761/eureka
